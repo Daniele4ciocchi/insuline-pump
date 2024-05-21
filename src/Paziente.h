@@ -9,7 +9,7 @@
 class Paziente {
 private:
     double glucosio; // Concentrazione di glucosio nel sangue
-    double insulina; // Dose di insulina
+    double insulina; // Dose di insulina nel sangue
 
 public:
     // Costruttore
