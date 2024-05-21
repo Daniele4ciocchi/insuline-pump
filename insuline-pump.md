@@ -1,7 +1,12 @@
 ### Paziente
+- Costanti 
+  - Gb -> livello di glucosio base
+  - Ib -> livello di insulina base
+  - Vg -> volume di distribuzione del glucosio
+  - Vi -> volume di distribuzione dell'insulina
 - Variabili
 	- Quantità di glucosio nel sangue 
-	- 
+    - Quantità di insulina nel sangue
 - Input
 	- Insulina nella pompa 
 	- Cibo ingerito 
