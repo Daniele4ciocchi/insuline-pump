@@ -1,0 +1,3 @@
+/home/daniele/Scrivania/insuline-pump/cmake-build-debug/CMakeFiles/insuline_pump.dir
+/home/daniele/Scrivania/insuline-pump/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/daniele/Scrivania/insuline-pump/cmake-build-debug/CMakeFiles/rebuild_cache.dir
