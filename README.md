@@ -65,3 +65,72 @@ I monitor per le proprietà non-funzionali verificheranno altri aspetti del sist
     Proprietà Non-Funzionali:
         Stabilità del Sistema: Assicurare che il sistema non mostri oscillazioni significative e che converga a un livello di glucosio stabile.
         Reattività della Pompa: Misurare il tempo di risposta della pompa ai cambiamenti nei livelli di glucosio.
+
+
+## VERSIONE PIU' DETTAGLIATA
+La descrizione fornita nella nuova traccia del progetto include dettagli aggiuntivi su come modellare e simulare i componenti della pompa per insulina utilizzando equazioni differenziali ordinarie (ODE) trasformate in sistemi discreti. A differenza del primo approccio più generale, questo outline fornisce specifiche più precise su come implementare ogni componente e dettaglia requisiti sia funzionali che non-funzionali. Di seguito viene presentata una nuova versione del piano del progetto in base alle specifiche indicate.
+1. Modello del Sistema
+
+Il sistema si compone dei seguenti elementi:
+
+    Modello dell'ambiente.
+    Modello del paziente.
+    Modello della pompa.
+    Monitor per i requisiti.
+
+2. Simulazione di Modelli Definiti Tramite Equazioni Differenziali Ordinarie (ODE)
+
+Per simulare il sistema in continuo, utilizzeremo la trasformazione delle ODE in un Sistema a Tempo Discreto (DTS) tramite integrazione numerica. La discretizzazione permette di approssimare la soluzione delle ODE utilizzando metodi come l'approssimazione di Eulero.
+3. Modello dell'Ambiente
+
+L'ambiente definisce l'assunzione di cibo del paziente:
+
+    Input: Nessuno.
+    Output: Variabile booleana che vale 1 quando il paziente assume zucchero e 0 altrimenti.
+
+Esempio di Schema Alimentare
+
+    Durata del pasto L=60 minuti.
+    Periodo di digiuno F=480 minuti (8 ore).
+    Funzione di assunzione del cibo:
+    δ(t)=square(0,L,F,t)
+    Dove:
+    square(a,b,c,t)={ 1 se t mod  (a+b+c)∈[a,a+b)
+                    { 0 altrimenti
+    
+4. Modello del Paziente
+
+Il modello del paziente utilizza il modello del simulatore di diabete tipo 2 di Padova come base.
+
+    Input: Dose di insulina dalla pompa, assunzione di cibo dall'ambiente.
+    Output: Concentrazione di glucosio nel sangue.
+
+Modifica del Modello
+
+    Concentrazione di insulina nel plasma:
+    I(t)=(Ip(t)+u(t))/V⋅I
+    Massa di insulina nel plasma:
+    Ip(t)=LHS+u(t)
+
+5. Modello della Pompa
+
+Il modello della pompa utilizza una strategia di controllo per regolare la dose di insulina basata sui livelli di glucosio nel sangue.
+
+    Input: Concentrazione di glucosio G(t).
+    Output: Dose di insulina u(t).
+
+Strategia di Controllo
+
+Utilizzeremo una strategia PID o una strategia basata su regole definite nel libro o presentate durante le lezioni, con un tempo di campionamento di 5 minuti.
+6. Monitor
+
+I monitor valutano se i requisiti funzionali e non-funzionali sono soddisfatti.
+Requisiti Funzionali
+
+    Sicurezza: Il glucosio non deve scendere sotto i 50 mg/dL (ipoglicemia).
+    Vitalità: Il glucosio dovrebbe rimanere il più vicino possibile a 100 mg/dL.
+
+Requisiti Non-Funzionali
+
+    Minimizzazione dell'insulina iniettata: Valutare la quantità di insulina iniettata giornalmente.
+    Massimizzazione del tempo di campionamento: Sperimentare diversi tempi di campionamento e riportare i risultati.
